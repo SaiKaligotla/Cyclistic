@@ -1,2 +1,0 @@
-# Cyclistic
-SQL-Data Analysis

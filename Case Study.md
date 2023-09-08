@@ -1,4 +1,4 @@
-# Case Study 1: How Does a Bike-Share Navigate Speedy Success?
+# Case Study: How Does a Bike-Share Navigate Speedy Success?
 
 # Cyclistic
 Google Data Analytics: A Case Study in SQL-Data Analysis

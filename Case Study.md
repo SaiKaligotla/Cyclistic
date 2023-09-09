@@ -39,4 +39,10 @@ _How do annual members and casual riders use Cyclistic bikes differently?_
   We received cycle trip data for the first quarter of 2020. During the Ask phase, we identified how the data was organized, evaluated its credibility, and sorted and     filtered it for further analysis.
 
 ### Prepare : 
-  
+Add a New Column named as Trip_Date:
+
+	ALTER TABLE Cyclistic..Divvy_Trips_2020_Q1
+	ADD Trip_Date Varchar(255);
+
+Same for the Time Column
+	

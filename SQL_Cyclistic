@@ -1,10 +1,11 @@
-
+--Seperating Time and Date from TimeDate for started_at column
 SELECT 
 	CONVERT(date, started_at) AS Trip_Start_Date,
 	CONVERT(time, started_at) AS Trip_Start_Time
 FROM
 	Cyclistic..Divvy_Trips_2020_Q1
 
+--Add new Start Date,Time Columns to  the table
 
 ALTER TABLE Cyclistic..Divvy_Trips_2020_Q1
 	ADD
@@ -13,22 +14,39 @@ ALTER TABLE Cyclistic..Divvy_Trips_2020_Q1
 	ADD
 		Trip_Start_time time
 
+-- Update the added tables with values
 
 UPDATE Cyclistic..Divvy_Trips_2020_Q1
 SET Trip_Start_Date = CONVERT(date, started_at),
     Trip_Start_Time = CONVERT(time, started_at);
 
---ALTER TABLE Cyclistic..Divvy_Trips_2020_Q1
---	DROP COLUMN Trip_Start_Date, Trip_Start_Time
+
+--Add new End Date,Time Columns to  the table
+
+ALTER TABLE Cyclistic..Divvy_Trips_2020_Q1
+	ADD
+		Trip_End_Date Date,
+		Trip_End_Time Time;
+
+-- Update the added tables with values
+
+UPDATE Cyclistic..Divvy_Trips_2020_Q1
+	SET 
+		Trip_End_Date = CONVERT(date, ended_at),
+		Trip_End_Time = CONVERT(time, ended_at);
 
 
+--Creating 'day_of_week' Column
+ALTER TABLE Cyclistic..Divvy_Trips_2020_Q1
+	ADD
+		Day_of_week varchar(225)
 
-SELECT *
+-- Update the added tables with name of the day.
+
+UPDATE Cyclistic..Divvy_Trips_2020_Q1
+	SET
+		Day_of_week = DATENAME(weekday, Trip_Start_Date)
+
+SELECT  TOP(10) *
 FROM
 	Cyclistic..Divvy_Trips_2020_Q1
-
---DELETE 
---FROM
---	Cyclistic..Divvy_Trips_2020_Q1
---WHERE
---	end_station_name IS NULL

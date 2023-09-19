@@ -5,16 +5,16 @@ FROM
 
 ----Create a new table and move lat and long columns.
 
---SELECT	
---	start_lat,
---	start_lng,
---	end_lat,
---	end_lng
+SELECT	
+	start_lat,
+	start_lng,
+	end_lat,
+	end_lng
 
---INTO
---	Trip_lat_long
---FROM
---	Cyclistic..Divvy_Trips_2020_Q1
+INTO
+	Trip_lat_long
+FROM
+	Cyclistic..Divvy_Trips_2020_Q1
 
 ---- ENDS HERE
 
@@ -22,12 +22,12 @@ SELECT *
 FROM
 	Cyclistic..Trip_lat_long
 
----- Drop the created columns from the original table
---ALTER TABLE 
---	Cyclistic..Divvy_Trips_2020_Q1
---	DROP COLUMN
---		start_lat, start_lng, end_lng, end_lat
-----Ends here
+-- Drop the created columns from the original table
+ALTER TABLE 
+	Cyclistic..Divvy_Trips_2020_Q1
+	DROP COLUMN
+		start_lat, start_lng, end_lng, end_lat
+--Ends here
 
 --Update the Trip_lat_long table with ride_id as a primary key
 
@@ -36,14 +36,14 @@ ALTER TABLE
 ADD
 	Trip_id varchar(255)
 
---Add value to the Tri_id column
+--Add value to the Trip_id column
 
---UPDATE
---	Cyclistic..Trip_lat_long
---SET
---	Trip_id = Divvy_Trips_2020_Q1. ride_id
---		FROM
---			Cyclistic..Divvy_Trips_2020_Q1
+UPDATE
+	Cyclistic..Trip_lat_long
+SET
+	Trip_id = Divvy_Trips_2020_Q1. ride_id
+		FROM
+			Cyclistic..Divvy_Trips_2020_Q1
 
 -- Ends here
 
@@ -171,12 +171,15 @@ FROM
 
 --Update table
 
-UPDATE Cyclistic..Station_Usage
-	SET
-		start_station_name = D.start_station_name ,
-		end_station_name = D.end_station_name ,
-		start_station_id = D.start_station_id ,
-		end_station_id = D.end_station_id
+INSERT INTO
+	Cyclistic..Station_Usage
 
-FROM
-	Cyclistic..Divvy_Trips_2020_Q1 AS D
+SELECT 
+		start_station_name,
+		end_station_name,
+		start_station_id,
+		end_station_id
+	FROM
+		Cyclistic..Divvy_Trips_2020_Q1
+
+--Ends Here
